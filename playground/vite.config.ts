@@ -4,6 +4,7 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 
 // https://vite.dev/config/
 export default defineConfig({
+	base: "./",
 	plugins: [
 		preact(),
 		viteStaticCopy({
