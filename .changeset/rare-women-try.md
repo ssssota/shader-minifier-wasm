@@ -1,0 +1,5 @@
+---
+"playground": patch
+---
+
+Fix exports
