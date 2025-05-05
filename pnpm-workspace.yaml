@@ -1,0 +1,5 @@
+packages:
+  - playground
+
+catalog:
+  typescript: ^5.8.3

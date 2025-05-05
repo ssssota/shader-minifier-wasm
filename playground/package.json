@@ -1,0 +1,20 @@
+{
+	"name": "playground",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"preact": "^10.26.4",
+		"shader-minifier-wasm": "workspace:*"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.10.1",
+		"typescript": "catalog:",
+		"vite": "^6.3.1"
+	}
+}
