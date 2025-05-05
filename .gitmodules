@@ -1,0 +1,3 @@
+[submodule "shader-minifier"]
+	path = shader-minifier
+	url = https://github.com/laurentlb/shader-minifier.git

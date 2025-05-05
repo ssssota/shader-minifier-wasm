@@ -1,0 +1,30 @@
+{
+	"name": "shader-minifier-wasm",
+	"version": "0.1.0",
+	"description": "Shader(GLSL) minifier using WebAssembly (powered by dotnet)",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"build": "pnpm clean && pnpm build-wasm && pnpm build-ts && pnpm copy-wasm",
+		"clean": "node -e 'fs.rmSync(`dist`,{recursive:true,force:true})'",
+		"build-wasm": "dotnet build ./Wasm/wasm.csproj -c Release",
+		"build-ts": "tsc",
+		"copy-wasm": "cp -r ./Wasm/bin/Release/net8.0/browser-wasm/AppBundle ./dist/AppBundle",
+		"fmt": "biome check --fix .",
+		"check": "biome check .",
+		"test": "node --test --experimental-strip-types 'tests/**/*.spec.ts'",
+		"changeset": "changeset",
+		"release": "pnpm build && pnpm changeset publish"
+	},
+	"keywords": ["GLSL", "shader", "minifier", "wasm", "dotnet"],
+	"author": "TOMIKAWA Sotaro",
+	"license": "MIT",
+	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@changesets/changelog-github": "^0.5.1",
+		"@changesets/cli": "^2.29.2",
+		"@types/node": "^22.15.3",
+		"typescript": "^5.8.3"
+	}
+}
