@@ -1,5 +1,5 @@
 // @ts-ignore
-import { minify as internal } from "./AppBundle/main.mjs";
+import { createMinifier as internal } from "./AppBundle/main.mjs";
 
 /**
  * @see https://github.com/laurentlb/shader-minifier#usage
@@ -48,8 +48,20 @@ export type Options = {
 	exportKkpSymbolMaps?: boolean;
 };
 
-export function minify(source: string, options: Options = {}): Promise<string> {
-	return internal(source, optionsIntoFlags(options));
+export async function createMinifier(): Promise<
+	(source: string, options: Options) => string
+> {
+	const minifier = await internal();
+	return (source: string, options: Options = {}) =>
+		minifier(source, optionsIntoFlags(options));
+}
+
+export async function minify(
+	source: string,
+	options: Options = {},
+): Promise<string> {
+	const minifier = await createMinifier();
+	return minifier(source, options);
 }
 
 function optionsIntoFlags(options: Options): string[] {
