@@ -18,7 +18,7 @@
 		"copy-wasm": "cp -r ./Wasm/bin/Release/net8.0/browser-wasm/AppBundle ./dist/AppBundle",
 		"fmt": "biome check --fix .",
 		"check": "biome check .",
-		"test": "node --test --experimental-strip-types 'tests/**/*.spec.ts'",
+		"test": "node --test --experimental-strip-types",
 		"changeset": "changeset",
 		"release": "pnpm build && pnpm changeset publish"
 	},
