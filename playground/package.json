@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@preact/signals": "^2.0.4",
 		"mizu.css": "^0.1.3",
 		"preact": "^10.26.4",
 		"shader-minifier-wasm": "workspace:*"

@@ -32,6 +32,9 @@ importers:
 
   playground:
     dependencies:
+      '@preact/signals':
+        specifier: ^2.0.4
+        version: 2.0.4(preact@10.26.5)
       mizu.css:
         specifier: ^0.1.3
         version: 0.1.3
@@ -459,6 +462,14 @@ packages:
     peerDependencies:
       '@babel/core': 7.x
       vite: 2.x || 3.x || 4.x || 5.x || 6.x
+
+  '@preact/signals-core@1.8.0':
+    resolution: {integrity: sha512-OBvUsRZqNmjzCZXWLxkZfhcgT+Fk8DDcT/8vD6a1xhDemodyy87UJRJfASMuSD8FaAIeGgGm85ydXhm7lr4fyA==}
+
+  '@preact/signals@2.0.4':
+    resolution: {integrity: sha512-9241aGnIv7y0IGzaq2vkBMe8/0jGnnmEEUeFmAoTWsaj8q/BW2PVekL8nHVJcy69bBww6rwEy3A1tc6yPE0sJA==}
+    peerDependencies:
+      preact: '>= 10.25.0'
 
   '@prefresh/babel-plugin@0.5.1':
     resolution: {integrity: sha512-uG3jGEAysxWoyG3XkYfjYHgaySFrSsaEb4GagLzYaxlydbuREtaX+FTxuIidp241RaLl85XoHg9Ej6E4+V1pcg==}
@@ -1649,6 +1660,13 @@ snapshots:
     transitivePeerDependencies:
       - preact
       - supports-color
+
+  '@preact/signals-core@1.8.0': {}
+
+  '@preact/signals@2.0.4(preact@10.26.5)':
+    dependencies:
+      '@preact/signals-core': 1.8.0
+      preact: 10.26.5
 
   '@prefresh/babel-plugin@0.5.1': {}
 
