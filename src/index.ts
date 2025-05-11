@@ -19,7 +19,8 @@ export type Options = {
 		| "c-array"
 		| "js"
 		| "nasm"
-		| "rust";
+		| "rust"
+		| "json";
 	/** Choose the field names for vectors: 'rgba', 'xyzw', or 'stpq' */
 	fieldNames?: "rgba" | "xyzw" | "stpq";
 	/** Do not rename external values (e.g. uniform) */
