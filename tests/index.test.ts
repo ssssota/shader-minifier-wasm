@@ -26,7 +26,7 @@ void main()
 		{ format: "json" },
 	);
 	const json = JSON.parse(result);
-	assert.strictEqual(json, {
+	assert.deepEqual(json, {
 		mappings: {
 			fragColor: "m",
 		},
