@@ -14,3 +14,24 @@ void main()
 	);
 	assert.strictEqual(result, "out vec4 m;void main(){m=vec4(1);}");
 });
+
+it("should minify", async () => {
+	const result = await minify(
+		`
+out vec4 fragColor;
+void main()
+{
+    fragColor = vec4(1., 1., 1., 1.);
+}`,
+		{ format: "json" },
+	);
+	const json = JSON.parse(result);
+	assert.strictEqual(json, {
+		mappings: {
+			fragColor: "m",
+		},
+		shaders: {
+			glsl: "out vec4 m;void main(){m=vec4(1);}",
+		},
+	});
+});
