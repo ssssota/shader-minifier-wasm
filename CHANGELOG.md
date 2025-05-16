@@ -1,5 +1,11 @@
 # shader-minifier-wasm
 
+## 0.2.0
+
+### Minor Changes
+
+- [#12](https://github.com/ssssota/shader-minifier-wasm/pull/12) [`feae4c5`](https://github.com/ssssota/shader-minifier-wasm/commit/feae4c535b2e7f5ae92ab88b062d49118cd3aec4) Thanks [@ssssota](https://github.com/ssssota)! - Multiple shaders
+
 ## 0.1.2
 
 ### Patch Changes
