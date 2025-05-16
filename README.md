@@ -13,13 +13,15 @@ npm install shader-minifier-wasm
 ```javascript
 import { minify } from 'shader-minifier-wasm';
 
-const minified = await minify(`
-  out vec4 fragColor;
-  void main()
-  {
-      fragColor = vec4(1., 1., 1., 1.);
-  }
-`, { format: 'text' });
+const minified = await minify({
+  someShaderName: `
+    out vec4 fragColor;
+    void main()
+    {
+        fragColor = vec4(1., 1., 1., 1.);
+    }
+  `
+}, { format: 'text' });
 
 console.log(minified); // -> "out vec4 m;void main(){m=vec4(1);}"
 ```
