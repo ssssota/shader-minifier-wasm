@@ -107,6 +107,7 @@ export function App() {
 							<option value="js">js</option>
 							<option value="nasm">nasm</option>
 							<option value="rust">rust</option>
+							<option value="json">json</option>
 						</select>
 					</p>
 					<p>
