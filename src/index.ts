@@ -50,19 +50,20 @@ export type Options = {
 };
 
 export async function createMinifier(): Promise<
-	(source: string, options: Options) => string
+	(sources: Record<string, string>, options?: Options) => string
 > {
 	const minifier = await internal();
-	return (source: string, options: Options = {}) =>
-		minifier(source, optionsIntoFlags(options));
+	return (sources: Record<string, string>, options: Options = {}) => {
+		return minifier(Object.entries(sources).flat(), optionsIntoFlags(options));
+	};
 }
 
 export async function minify(
-	source: string,
+	sources: Record<string, string>,
 	options: Options = {},
 ): Promise<string> {
 	const minifier = await createMinifier();
-	return minifier(source, options);
+	return minifier(sources, options);
 }
 
 function optionsIntoFlags(options: Options): string[] {

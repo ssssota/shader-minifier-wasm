@@ -5,7 +5,7 @@ type Message = {
 };
 export type RequestMessage = Message & {
 	type: "minify";
-	source: string;
+	source: Record<string, string>;
 	options: Options;
 };
 export type ResponseMessage = MinifyResponse | MinifyError;
