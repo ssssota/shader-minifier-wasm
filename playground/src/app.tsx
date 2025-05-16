@@ -46,7 +46,7 @@ export function App() {
 
 	useSignalEffect(() => {
 		const start = performance.now();
-		minify(source.value, options.value).then((minified) => {
+		minify({ glsl: source.value }, options.value).then((minified) => {
 			const end = performance.now();
 			duration.value = end - start;
 			result.value = minified;
