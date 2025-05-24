@@ -14,7 +14,6 @@ const dotnetExportsPromise = dotnet
 
 /**
  * Create minifier function to minify GLSL (or HLSL) source code.
- * @returns {Promise<(source: string, flags: string[]) => string>} Minify function
  */
 export async function createMinifier() {
 	const exports = await dotnetExportsPromise;

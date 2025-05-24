@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "pnpm clean && pnpm build-wasm && pnpm build-ts && pnpm copy-wasm",
 		"clean": "node -e 'fs.rmSync(`dist`,{recursive:true,force:true})'",
-		"build-wasm": "dotnet build ./Wasm/wasm.csproj -c Release",
+		"build-wasm": "dotnet publish ./Wasm/wasm.csproj -c Release",
 		"build-ts": "tsc",
 		"copy-wasm": "cp -r ./Wasm/bin/Release/net8.0/browser-wasm/AppBundle ./dist/AppBundle",
 		"fmt": "biome check --fix .",
