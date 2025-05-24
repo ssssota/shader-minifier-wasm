@@ -10,7 +10,7 @@ export default defineConfig({
 		viteStaticCopy({
 			targets: [
 				{
-					src: "node_modules/shader-minifier-wasm/dist/AppBundle/_framework/*",
+					src: "node_modules/shader-minifier-wasm/dist/AppBundleSmall/_framework/*",
 					dest: "assets",
 				},
 			],

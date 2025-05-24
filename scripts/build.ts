@@ -8,6 +8,11 @@ async function main() {
 	await buildWasm(false);
 	await copyDir(
 		"./Wasm/bin/Release/net8.0/browser-wasm/AppBundle",
+		"./dist/AppBundleSmall",
+	);
+	await buildWasm(true);
+	await copyDir(
+		"./Wasm/bin/Release/net8.0/browser-wasm/AppBundle",
 		"./dist/AppBundle",
 	);
 	await buildTs();
@@ -18,7 +23,8 @@ async function clean() {
 	await fs.rm("Wasm/bin", { recursive: true, force: true });
 }
 async function buildWasm(aot: boolean) {
-	await exec("dotnet", "publish ./Wasm/wasm.csproj -c Release".split(" "));
+	const target = aot ? "./Wasm/wasm-aot.csproj" : "./Wasm/wasm.csproj";
+	await exec("dotnet", ["publish", target, "-c", "Release"]);
 }
 async function buildTs() {
 	await exec("./node_modules/.bin/tsc", []);

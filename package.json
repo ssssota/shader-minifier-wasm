@@ -9,6 +9,12 @@
 			"default": "./dist/index.js"
 		}
 	},
+	"imports": {
+		"#AppBundle": {
+			"browser": "./dist/AppBundleSmall/main.mjs",
+			"default": "./dist/AppBundle/main.mjs"
+		}
+	},
 	"files": ["dist"],
 	"scripts": {
 		"build": "node --experimental-strip-types ./scripts/build.ts",

@@ -1,6 +1,6 @@
 import * as assert from "node:assert/strict";
 import { it } from "node:test";
-import { minify } from "../dist/index.js";
+import { minify } from "shader-minifier-wasm";
 
 it("should minify", async () => {
 	const result = await minify(

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WasmMainJSPath>main.mjs</WasmMainJSPath>
+    <RunAOTCompilation>true</RunAOTCompilation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\shader-minifier\Minifier\Minifier.fsproj" />
+  </ItemGroup>
+</Project>
