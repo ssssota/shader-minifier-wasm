@@ -1,6 +1,6 @@
 {
 	"name": "shader-minifier-wasm",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Shader(GLSL) minifier using WebAssembly (powered by dotnet)",
 	"type": "module",
 	"exports": {

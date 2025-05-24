@@ -1,5 +1,11 @@
 # shader-minifier-wasm
 
+## 0.2.1
+
+### Patch Changes
+
+- [#14](https://github.com/ssssota/shader-minifier-wasm/pull/14) [`1650b7b`](https://github.com/ssssota/shader-minifier-wasm/commit/1650b7b407db7d5de17285348f4fdff7d8ef8549) Thanks [@ssssota](https://github.com/ssssota)! - Improve package size
+
 ## 0.2.0
 
 ### Minor Changes
