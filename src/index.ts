@@ -5,6 +5,8 @@ import { createMinifier as internal } from "./AppBundle/main.mjs";
  * @see https://github.com/laurentlb/shader-minifier#usage
  */
 export type Options = {
+	/** Set the output filename (default is shader_code.h) */
+	outputName?: string;
 	/** Verbose, display additional information */
 	verbose?: boolean;
 	/** Debug, display more additional information */
@@ -54,7 +56,54 @@ export async function createMinifier(): Promise<
 > {
 	const minifier = await internal();
 	return (sources: Record<string, string>, options: Options = {}) => {
-		return minifier(Object.entries(sources).flat(), optionsIntoFlags(options));
+		// [JSExport]
+		// internal static string Minify(
+		//   string[] sources,
+		//   bool version,
+		//   string outputName,
+		//   string outputFormat,
+		//   bool verbose,
+		//   bool debug,
+		//   string canonicalFieldNames,
+		//   bool preserveExternals,
+		//   bool preserveAllGlobals,
+		//   bool hlsl,
+		//   bool noInlining,
+		//   bool noOverloading,
+		//   bool aggroInlining,
+		//   bool noSequence,
+		//   bool noRenaming,
+		//   string[] noRenamingList,
+		//   bool noRemoveUnused,
+		//   bool moveDeclarations,
+		//   bool preprocess,
+		//   bool exportKkpSymbolMaps
+		// )
+		return minifier(
+			Object.entries(sources).flat(),
+			false, // version
+			options.outputName ?? "shader_code.h", // outputName
+			options.format ?? "c-variables", // outputFormat
+			options.verbose ?? false, // verbose
+			options.debug ?? false, // debug
+			options.fieldNames ?? "xyzw", // canonicalFieldNames
+			!!(options.preserveExternals || options.preserveAllGlobals), // preserveExternals
+			options.preserveAllGlobals ?? false, // preserveAllGlobals
+			options.hlsl ?? false, // hlsl
+			options.noInlining ?? false, // noInlining
+			options.noOverloading ?? false, // noOverloading
+			!!(options.aggressiveInlining && !options.noInlining), // aggroInlining
+			options.noSequence ?? false, // noSequence
+			options.noRenaming ?? false, // noRenaming
+			// noRenamingList
+			typeof options.noRenamingList === "string"
+				? options.noRenamingList.split(",")
+				: (options.noRenamingList ?? ["main", "mainImage"]),
+			options.noRemoveUnused ?? false, // noRemoveUnused
+			options.moveDeclarations ?? false, // moveDeclarations
+			options.preprocess ?? false, // preprocess
+			options.exportKkpSymbolMaps ?? false, // exportKkpSymbolMaps
+		);
 	};
 }
 
@@ -64,34 +113,4 @@ export async function minify(
 ): Promise<string> {
 	const minifier = await createMinifier();
 	return minifier(sources, options);
-}
-
-function optionsIntoFlags(options: Options): string[] {
-	const flags: string[] = [];
-	if (options.verbose) flags.push("-v");
-	if (options.debug) flags.push("--debug");
-	if (options.hlsl) flags.push("--hlsl");
-	if (options.format) flags.push("--format", options.format);
-	if (options.fieldNames) flags.push("--field-names", options.fieldNames);
-	if (options.preserveExternals) flags.push("--preserve-externals");
-	if (options.preserveAllGlobals) flags.push("--preserve-all-globals");
-	if (options.noInlining) flags.push("--no-inlining");
-	if (options.aggressiveInlining) flags.push("--aggressive-inlining");
-	if (options.noRenaming) flags.push("--no-renaming");
-	if (options.noRenamingList) {
-		flags.push(
-			"--no-renaming-list",
-			Array.isArray(options.noRenamingList)
-				? options.noRenamingList.join(",")
-				: options.noRenamingList,
-		);
-	}
-	if (options.noSequence) flags.push("--no-sequence");
-	if (options.noRemoveUnused) flags.push("--no-remove-unused");
-	if (options.noOverloading) flags.push("--no-overloading");
-	if (options.moveDeclarations) flags.push("--move-declarations");
-	if (options.preprocess) flags.push("--preprocess");
-	if (options.exportKkpSymbolMaps) flags.push("--export-kkp-symbol-maps");
-
-	return flags;
 }
