@@ -1,5 +1,4 @@
-// @ts-ignore
-import { createMinifier as internal } from "./AppBundle/main.mjs";
+import { createMinifier as internal } from "#AppBundle";
 
 /**
  * @see https://github.com/laurentlb/shader-minifier#usage
@@ -56,29 +55,6 @@ export async function createMinifier(): Promise<
 > {
 	const minifier = await internal();
 	return (sources: Record<string, string>, options: Options = {}) => {
-		// [JSExport]
-		// internal static string Minify(
-		//   string[] sources,
-		//   bool version,
-		//   string outputName,
-		//   string outputFormat,
-		//   bool verbose,
-		//   bool debug,
-		//   string canonicalFieldNames,
-		//   bool preserveExternals,
-		//   bool preserveAllGlobals,
-		//   bool hlsl,
-		//   bool noInlining,
-		//   bool noOverloading,
-		//   bool aggroInlining,
-		//   bool noSequence,
-		//   bool noRenaming,
-		//   string[] noRenamingList,
-		//   bool noRemoveUnused,
-		//   bool moveDeclarations,
-		//   bool preprocess,
-		//   bool exportKkpSymbolMaps
-		// )
 		return minifier(
 			Object.entries(sources).flat(),
 			false, // version
